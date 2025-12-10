@@ -28,11 +28,11 @@ export default function Home() {
   }, [status, router]);
 
   if (status === "loading") {
-    return <p className="p-4">Loading...</p>;
+    return <p className="p-4 text-black dark:text-white">Loading...</p>;
   }
 
   if (status === "authenticated") {
-    return <p className="p-4">Redirecting...</p>;
+    return <p className="p-4 text-black dark:text-white">Redirecting...</p>;
   }
 
   // Handle email/password SIGN IN
@@ -100,15 +100,15 @@ export default function Home() {
   const isSignIn = activeTab === "signin";
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+    <main className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-6">
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 w-full max-w-md">
         {/* Tabs */}
-        <div className="flex border-b mb-4">
+        <div className="flex border-b mb-4 border-gray-200 dark:border-gray-700">
           <button
             className={`flex-1 py-2 text-center font-semibold ${
               isSignIn
-                ? "border-b-2 border-green-600"
-                : "text-gray-500 border-b-2 border-transparent"
+                ? "border-b-2 border-green-600 text-black dark:text-white"
+                : "text-gray-500 dark:text-gray-300 border-b-2 border-transparent"
             }`}
             onClick={() => {
               setActiveTab("signin");
@@ -120,8 +120,8 @@ export default function Home() {
           <button
             className={`flex-1 py-2 text-center font-semibold ${
               !isSignIn
-                ? "border-b-2 border-green-600"
-                : "text-gray-500 border-b-2 border-transparent"
+                ? "border-b-2 border-green-600 text-black dark:text-white"
+                : "text-gray-500 dark:text-gray-300 border-b-2 border-transparent"
             }`}
             onClick={() => {
               setActiveTab("signup");
@@ -139,7 +139,9 @@ export default function Home() {
             <input
               type="email"
               placeholder="Email"
-              className="w-full border rounded px-3 py-2 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm
+                         bg-white dark:bg-gray-700 text-black dark:text-white
+                         border-gray-300 dark:border-gray-600"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -148,25 +150,31 @@ export default function Home() {
             <input
               type="password"
               placeholder="Password"
-              className="w-full border rounded px-3 py-2 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm
+                         bg-white dark:bg-gray-700 text-black dark:text-white
+                         border-gray-300 dark:border-gray-600"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
 
             <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2">
+              <label className="flex items-center gap-2 text-black dark:text-gray-300">
                 <input type="checkbox" className="h-4 w-4" />
                 <span>Remember me</span>
               </label>
-              <button type="button" className="text-green-600 hover:underline">
+              <button
+                type="button"
+                className="text-green-600 hover:underline dark:text-green-400"
+              >
                 Forgot Password
               </button>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-2 rounded text-sm font-medium"
+              className="w-full bg-green-600 text-white py-2 rounded text-sm font-medium
+                         hover:bg-green-500"
               disabled={loading}
             >
               {loading ? "Signing in..." : "Sign In"}
@@ -178,7 +186,9 @@ export default function Home() {
             <input
               type="text"
               placeholder="Name"
-              className="w-full border rounded px-3 py-2 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm
+                         bg-white dark:bg-gray-700 text-black dark:text-white
+                         border-gray-300 dark:border-gray-600"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -187,7 +197,9 @@ export default function Home() {
             <input
               type="email"
               placeholder="Email"
-              className="w-full border rounded px-3 py-2 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm
+                         bg-white dark:bg-gray-700 text-black dark:text-white
+                         border-gray-300 dark:border-gray-600"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -196,7 +208,9 @@ export default function Home() {
             <input
               type="password"
               placeholder="Password"
-              className="w-full border rounded px-3 py-2 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm
+                         bg-white dark:bg-gray-700 text-black dark:text-white
+                         border-gray-300 dark:border-gray-600"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -204,7 +218,8 @@ export default function Home() {
 
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-2 rounded text-sm font-medium"
+              className="w-full bg-green-600 text-white py-2 rounded text-sm font-medium
+                         hover:bg-green-500"
               disabled={loading}
             >
               {loading ? "Signing up..." : "Sign Up"}
@@ -214,14 +229,16 @@ export default function Home() {
 
         {/* Error message */}
         {error && (
-          <p className="mt-3 text-sm text-red-600 text-center">{error}</p>
+          <p className="mt-3 text-sm text-red-600 dark:text-red-400 text-center">
+            {error}
+          </p>
         )}
 
         {/* OR separator */}
         <div className="flex items-center my-4">
-          <div className="flex-1 h-px bg-gray-300" />
-          <span className="mx-2 text-xs text-gray-500">or</span>
-          <div className="flex-1 h-px bg-gray-300" />
+          <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700" />
+          <span className="mx-2 text-xs text-gray-500 dark:text-gray-400">or</span>
+          <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700" />
         </div>
 
         {/* Social login buttons – all wired to providers */}
@@ -229,7 +246,9 @@ export default function Home() {
           {/* Google */}
           <button
             type="button"
-            className="flex items-center justify-center gap-2 border rounded py-2 text-sm"
+            className="flex items-center justify-center gap-2 border rounded py-2 text-sm
+                       bg-white dark:bg-gray-700 text-black dark:text-white
+                       border-gray-300 dark:border-gray-600"
             onClick={() => signIn("google")}
           >
             <span>🟥</span>
@@ -239,7 +258,9 @@ export default function Home() {
           {/* Facebook */}
           <button
             type="button"
-            className="flex items-center justify-center gap-2 border rounded py-2 text-sm"
+            className="flex items-center justify-center gap-2 border rounded py-2 text-sm
+                       bg-white dark:bg-gray-700 text-black dark:text-white
+                       border-gray-300 dark:border-gray-600"
             onClick={() => signIn("facebook")}
           >
             <span>📘</span>
@@ -249,7 +270,9 @@ export default function Home() {
           {/* LinkedIn */}
           <button
             type="button"
-            className="flex items-center justify-center gap-2 border rounded py-2 text-sm"
+            className="flex items-center justify-center gap-2 border rounded py-2 text-sm
+                       bg-white dark:bg-gray-700 text-black dark:text-white
+                       border-gray-300 dark:border-gray-600"
             onClick={() => signIn("linkedin")}
           >
             <span>🔗</span>
@@ -259,7 +282,9 @@ export default function Home() {
           {/* GitHub */}
           <button
             type="button"
-            className="flex items-center justify-center gap-2 border rounded py-2 text-sm"
+            className="flex items-center justify-center gap-2 border rounded py-2 text-sm
+                       bg-white dark:bg-gray-700 text-black dark:text-white
+                       border-gray-300 dark:border-gray-600"
             onClick={() => signIn("github")}
           >
             <span>🐱</span>
@@ -267,7 +292,7 @@ export default function Home() {
           </button>
         </div>
 
-        <p className="mt-4 text-[11px] text-center text-gray-500">
+        <p className="mt-4 text-[11px] text-center text-gray-500 dark:text-gray-400">
           By creating this account, you agree to our Privacy Policy &amp; Cookie
           Policy.
         </p>
